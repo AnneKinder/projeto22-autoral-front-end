@@ -5,6 +5,8 @@ import GlobalStyle from './src/assets/styles/GlobalStyle'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),
+  plugins: [react({
+    include: "**/*.jsx",
+  }),
   assets("/src/assets/styles/GlobalStyle")],
 })
