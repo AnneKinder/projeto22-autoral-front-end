@@ -49,9 +49,13 @@ const GlobalStyle = createGlobalStyle`
 			}
 			*{
 				box-sizing: border-box;
+				font-family: 'Galdeano', sans-serif;
+
 			}
 			body{
-				background-color: #B6AEE7;
+				background-color: #DFB3B8;
+				font-family: 'Galdeano', sans-serif;
+				height: 100%;
 			}
          `
 
