@@ -17,9 +17,10 @@ export default function SignIn() {
     setIsDisabled(true)
 
     axios
-    .post(`${URLPOST}signin`, loginUser)
+    .post(`${URLPOST}auth/signin`, loginUser)
     .then((res) => {     
       setUser(res.data);
+      alert("login feito")
       navigate("/home");
       setIsDisabled(false)
     })
