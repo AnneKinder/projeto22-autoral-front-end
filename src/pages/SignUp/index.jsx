@@ -141,7 +141,8 @@ const SidebarSty = styled.div`
   }
 
   h1{
-    font-size: 106px;
+    font-family: 'Barrio', cursive;
+    font-size: 100px;
     line-height: 117px;
     width: 233px;
   }
