@@ -67,7 +67,7 @@ export default function SignIn() {
           />
           <button type="submit" data-test="login-btn" disabled={isDisabled}>log in</button>
         </form>
-        <p data-test="sign-up-link" onClick={() => navigate("/sign-up")}>
+        <p data-test="sign-up-link" onClick={() => navigate("/signup")}>
           first time? start now!
         </p>
       </SignInSty>
