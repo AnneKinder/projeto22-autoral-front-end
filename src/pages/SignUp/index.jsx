@@ -22,14 +22,14 @@ export default function SignUp() {
         setIsDisabled(true)
 
         axios
-            .post(`${URLPOST}signup`, form)
+            .post(`${URLPOST}users/signup`, form)
             .then((res) => {
                 alert("Usuário criado!")
                 navigate("/");
                 setIsDisabled(false)
             })
             .catch((err) => {
-                alert(err.response.message);
+                console.log(err.response);
                 setIsDisabled(false)
             });
     }
@@ -87,14 +87,14 @@ export default function SignUp() {
 
                     <input
                         name="lastName"
-                        type="url"
+                        type="text"
                         placeholder="last name"
                         required
                         onChange={(e) =>
                             setForm({ ...form, lastName: e.target.value })
                         }
                         value={form.lastName}
-                        data-test="picture-url"
+                        data-test="last-name"
                     />
                     <button
                         type="submit"
