@@ -1,10 +1,14 @@
 import { styled } from "styled-components"
+import { useNavigate } from "react-router-dom"
 
 export default function Header() {
+
+    const navigate = useNavigate()
+
     return (
         <Container>
             <Box><h1>when</h1></Box>
-            <Box><h2>dreams & goals</h2></Box>
+            <Box onClick={() => navigate("/dreamlist")}><h2>dreamlist</h2></Box>
             <Box><h2>bye!</h2></Box>
         </Container>
     )
@@ -26,6 +30,11 @@ const Container = styled.div`
     font-size: 50px;
     line-height: 150px;
     width: 150px;
+    cursor: pointer;
+    }
+
+    h2{
+        cursor: pointer;
     }
 
     @media (max-width: 860px) {
