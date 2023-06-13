@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/auth";
 import SignIn from "./pages/Signin";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import Dreamlist from "./pages/Dreamlist";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/dreamlist" element={<Dreamlist />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

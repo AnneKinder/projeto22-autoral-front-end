@@ -28,6 +28,8 @@ const Container = styled.div`
         width:100%;
         border-radius:20px;
         box-shadow: 0 30px 40px rgba(0,0,0,.1);
+        box-sizing: border-box;
+        object-fit: cover;
     }
 
 `
