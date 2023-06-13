@@ -4,8 +4,8 @@ export default function Header() {
     return (
         <Container>
             <Box><h1>when</h1></Box>
-            <Box>dreams & goals</Box>
-            <Box>bye!</Box>
+            <Box><h2>dreams & goals</h2></Box>
+            <Box><h2>bye!</h2></Box>
         </Container>
     )
 }
@@ -16,7 +16,10 @@ const Container = styled.div`
     height:65px;
     background-color: #a2c1ba;
     justify-content: space-around;
-    color:white;
+    color:#ffffff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.1);   
+    text-shadow: 0 6px 10px rgba(0,0,0,.1);    
+ 
 
     h1{
     font-family: 'Barrio', cursive;
