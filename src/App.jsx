@@ -4,6 +4,7 @@ import GlobalStyle from "./assets/styles/GlobalStyle";
 import { AuthProvider } from "./contexts/auth";
 import SignIn from "./pages/Signin";
 import SignUp from "./pages/SignUp";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
