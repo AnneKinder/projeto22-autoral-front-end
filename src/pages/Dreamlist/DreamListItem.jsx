@@ -1,16 +1,17 @@
 import { styled } from "styled-components";
+import Add from "../../components/Add";
 
 export default function DreamListItem() {
     return (
         <Container>
-
+            <Add />
             <Left>
                 <Title>Make it to 8km</Title>
             </Left>
 
             <Right>
-            <img src="./src/assets/images/run.jpg" alt="" />
-            <Score>0/100</Score>
+                <img src="./src/assets/images/run.jpg" alt="" />
+                <Score>0/100</Score>
             </Right>
 
         </Container>
