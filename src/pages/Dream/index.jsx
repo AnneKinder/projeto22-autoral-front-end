@@ -1,7 +1,7 @@
 import { styled } from "styled-components"
-import GoalList from "./GoalList"
 import Header from "../../components/Header";
 import TotalScore from "./TotalScore";
+import Tasklist from "./Tasklist";
 
 export default function Dream() {
     return (
@@ -16,7 +16,7 @@ export default function Dream() {
 
                     <TotalScore />
 
-                    <GoalList />
+                    <Tasklist />
 
                     <Image>
                         <img src="./src/assets/images/run.jpg" alt="" />

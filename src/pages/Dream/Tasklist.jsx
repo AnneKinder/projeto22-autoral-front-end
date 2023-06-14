@@ -1,21 +1,21 @@
 import { styled } from "styled-components"
 
-export default function GoalList() {
+export default function Tasklist() {
     return (
         <Container>
 
-            <GoalItem>
+            <TaskItem>
                 <div className="checkbox">X</div>
-                <div className="goal">goal 1</div>
+                <div className="task">task 1</div>
                 <div className="score">500</div>
 
-            </GoalItem>
+            </TaskItem>
 
-            <GoalItem>
+            <TaskItem>
                 <div className="checkbox">V</div>
-                <div className="goal">goal 2</div>
+                <div className="task">task 2</div>
                 <div className="score" >10</div>
-            </GoalItem>
+            </TaskItem>
 
         </Container>
     )
@@ -31,7 +31,7 @@ const Container = styled.div`
     padding:10px;
 `
 
-const GoalItem = styled.div`
+const TaskItem = styled.div`
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -64,7 +64,7 @@ const GoalItem = styled.div`
         }
     }
 
-    .goal{
+    .task{
         padding-left:15px;
     }
 
