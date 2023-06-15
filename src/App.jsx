@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import Dreamlist from "./pages/Dreamlist";
 import Dream from "./pages/Dream";
+import NewDream from "./pages/NewDream";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/dreamlist" element={<Dreamlist />} />
           <Route path="/dream" element={<Dream />} />
+          <Route path="/newdream" element={<NewDream />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

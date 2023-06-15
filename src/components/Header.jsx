@@ -18,7 +18,7 @@ const Container = styled.div`
     display: flex;
     width: 100%;
     height:65px;
-    background-color: #a2c1ba;
+    background-color: #DFB3B8;
     justify-content: space-around;
     color:#ffffff;
     box-shadow: 0 6px 10px rgba(0,0,0,.1);   
