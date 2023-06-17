@@ -1,15 +1,34 @@
 import { styled } from "styled-components"
 import { useNavigate } from "react-router-dom"
+import { BsDoorOpenFill } from 'react-icons/bs';
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth";
+import axios from "axios";
 
 export default function Header() {
-
+    const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
+    const { token, setToken } = useContext(AuthContext);
     const navigate = useNavigate()
+    
+    async function logout() {
+        axios
+        .post(`${URLPOST}auth/logout`, {token: token})
+        .then((res) => {     
+          setToken("");
+          navigate("/");
+        })
+        .catch((err) => {
+          alert(err);
+          console.log(err.response)
+        });
+    
+    }
 
     return (
         <Container>
             <Box><h1>when</h1></Box>
             <Box onClick={() => navigate("/dreamlist")}><h2>dreamlist</h2></Box>
-            <Box><h2>bye!</h2></Box>
+            <Box><BsDoorOpenFill style={{ "cursor": "pointer" }} onClick={() => logout()} /></Box>
         </Container>
     )
 }
