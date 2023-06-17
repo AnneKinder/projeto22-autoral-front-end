@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/auth";
 export default function SignIn() {
   const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { setUser, setToken } = useContext(AuthContext);
   const [loginUser, setLoginUser] = useState({ email: "", password: "" });
   const [isDisabled, setIsDisabled] = useState(false)
 
@@ -19,7 +19,8 @@ export default function SignIn() {
     axios
     .post(`${URLPOST}auth/signin`, loginUser)
     .then((res) => {     
-      setUser(res.data);
+      setUser(res.data.user);
+      setToken(res.data.token)
       navigate("/home");
       setIsDisabled(false)
     })
