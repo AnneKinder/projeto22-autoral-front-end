@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
 
 			}
 			body{
-				background-color: #DFB3B8;
+				background-color: #a2c1ba;
 				font-family: 'Galdeano', sans-serif;
 				height: 100%;
 			}

@@ -29,7 +29,7 @@ const Plus = styled.div`
     height:100px;
     padding: 10px;
     background-color: white;
-    border: 5px solid #a2c1ba;
+    border: 5px solid #dfb3b8;
     border-radius: 50%;
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
