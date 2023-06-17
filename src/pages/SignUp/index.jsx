@@ -17,7 +17,7 @@ export default function SignUp() {
     const [isDisabled, setIsDisabled] = useState(false)
 
 
-    function handleSignIn(e) {
+    function handleSignUp(e) {
         e.preventDefault();
         setIsDisabled(true)
 
@@ -47,7 +47,7 @@ export default function SignUp() {
 
 
             <SignInSty>
-                <form onSubmit={handleSignIn}>
+                <form onSubmit={handleSignUp}>
 
                     <input
                         name="email"

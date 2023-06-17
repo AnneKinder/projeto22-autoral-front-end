@@ -1,9 +1,12 @@
 import { styled } from "styled-components"
+import { useNavigate } from "react-router-dom"
 
 export default function Add(){
+    const navigate = useNavigate()
+
     return(
         <Container>
-            <Plus>
+            <Plus onClick={()=>navigate("/newdream")}>
                 add dream here!
             </Plus>
         </Container>

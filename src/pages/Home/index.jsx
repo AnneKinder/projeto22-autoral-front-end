@@ -1,8 +1,12 @@
 import { styled } from "styled-components";
 import Header from "../../components/Header";
 import Preview from "./Preview";
+import { AuthContext } from "../../contexts/auth";
+import { useContext } from "react";
 
 export default function Home() {
+    const  {token } = useContext(AuthContext);
+console.log(token)
     return (
         <Screen>
             <Header />
