@@ -30,7 +30,7 @@ const Container = styled.div`
     display: flex;
     flex-direction:column ;
     width: 100%;
-    margin: 70px 0 70px 0;
+    margin: 70px 0 40px 0;
     text-align: start;
     padding:10px;
 `

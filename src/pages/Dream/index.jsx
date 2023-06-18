@@ -56,7 +56,7 @@ export default function Dream() {
                         <TotalScore partialPoints={dreamInfo.partialPoints} totalScore={dreamInfo.totalScore} />
 
                         <Tasklist tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} />
-                        <DateToBeDone>linha de chegada: {tasklistInfo.DateToBeDone}</DateToBeDone>
+                        <DateToBeDone>linha de chegada: {dreamInfo.dateToBeDone}</DateToBeDone>
                         <Image>
                             <img src={dreamInfo.pictureUrl} alt={dreamInfo.title} />
                         </Image>
@@ -97,14 +97,14 @@ const Title = styled.div`
 `
 
 const DateToBeDone = styled.div`
-     width:300px;
+     width:500px;
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 25px;
     color: #ffffff;
     text-align: center;
-    text-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    text-shadow: 0 3px 30px rgba(0,0,0,1);
     margin-bottom: 45px;
 `
 
