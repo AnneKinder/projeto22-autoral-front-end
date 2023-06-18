@@ -31,25 +31,13 @@ export default function Dreamlist() {
         }
     }
 
-    // async function openDream(dreamId) {
-    //     try {
-    //         await axios
-    //             .get(`${URLGET}dreams/dreamlist/${dreamId}`, config)
-    //             .then((res) => {
-    //                 navigate(`/dream/${dreamId}`)
-    //             })
-    //     } catch (err) {
-    //         console.log(err.response.data);
-    //     }
-    // }
-
-async function openDream(dreamId) {
-    try {
-        navigate(`/dream/${dreamId}`)
-    } catch (err) {
-        console.log(err);
+    async function openDream(dreamId) {
+        try {
+            navigate(`/dream/${dreamId}`)
+        } catch (err) {
+            console.log(err);
+        }
     }
-}
 
 
     useEffect(() => {
@@ -61,7 +49,7 @@ async function openDream(dreamId) {
         <Screen>
             <Header />
             <Container>
-                {dreamList.length === 0 ? <><p>You must be logged in to continue.</p> <p style={{"text-decoration":"underline", "cursor":"pointer"}} onClick={()=> navigate('/')}>Go to login page</p></> :
+                {dreamList.length === 0 ? <><p>You must be logged in to continue.</p> <p style={{ "text-decoration": "underline", "cursor": "pointer" }} onClick={() => navigate('/')}>Go to login page</p></> :
 
                     dreamList.map((d, index) => (
                         <DreamListItem

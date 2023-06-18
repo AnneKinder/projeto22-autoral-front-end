@@ -2,7 +2,7 @@ import { styled } from "styled-components"
 import Header from "../../components/Header";
 import TotalScore from "./TotalScore";
 import Tasklist from "./Tasklist";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../contexts/auth";
@@ -18,13 +18,15 @@ export default function Dream() {
     };
 
     const [dreamInfo, setDreamInfo] = useState({})
+    const [tasklistInfo, setTasklistInfo] = useState({})
 
-    async function getDreamFromApi() {
+    async function getDreamAndTasklistFromApi() {
         try {
             await axios
                 .get(`${URLGET}dreams/dreamlist/${id}`, config)
                 .then((res) => {
-                    setDreamInfo(res.data)
+                    setDreamInfo(res.data.dream)
+                    setTasklistInfo(res.data.tasklist)
                 })
         } catch (err) {
             console.log(err.response.data);
@@ -34,7 +36,7 @@ export default function Dream() {
     console.log(dreamInfo)
 
     useEffect(() => {
-        getDreamFromApi()
+        getDreamAndTasklistFromApi()
     }, []);
 
     return (
@@ -52,9 +54,9 @@ export default function Dream() {
                         </Title>
 
                         <TotalScore partialPoints={dreamInfo.partialPoints} totalScore={dreamInfo.totalScore} />
-                        
-                        <Tasklist />
 
+                        <Tasklist tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} />
+                        <DateToBeDone>linha de chegada: {tasklistInfo.DateToBeDone}</DateToBeDone>
                         <Image>
                             <img src={dreamInfo.pictureUrl} alt={dreamInfo.title} />
                         </Image>
@@ -92,8 +94,18 @@ const Title = styled.div`
     color: #ffffff;
     text-align: center;
     text-shadow: 0 20px 40px rgba(0,0,0,0.6);
+`
 
-
+const DateToBeDone = styled.div`
+     width:300px;
+    font-family: 'Galdeano', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    margin-bottom: 45px;
 `
 
 const Image = styled.div`
