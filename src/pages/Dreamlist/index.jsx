@@ -22,9 +22,9 @@ export default function Dreamlist() {
     async function getDreams() {
         try {
             await axios
-                .get(`${URLGET}dreams`, config)
+                .get(`${URLGET}dreams/dreamlist`, config)
                 .then((res) => {
-                    setDreamList(res.data.dream);
+                    setDreamList(res.data);
                 })
         } catch (err) {
             console.log(err.response.data);
@@ -40,7 +40,7 @@ export default function Dreamlist() {
         <Screen>
             <Header />
             <Container>
-                {dreamList.length === 0 ? <div>loading</div> :
+                {dreamList.length === 0 ? <div>You must be logged in to continue.</div> :
 
                     dreamList.map((item, index) => (
                         <DreamListItem
