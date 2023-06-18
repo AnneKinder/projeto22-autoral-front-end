@@ -31,6 +31,27 @@ export default function Dreamlist() {
         }
     }
 
+    // async function openDream(dreamId) {
+    //     try {
+    //         await axios
+    //             .get(`${URLGET}dreams/dreamlist/${dreamId}`, config)
+    //             .then((res) => {
+    //                 navigate(`/dream/${dreamId}`)
+    //             })
+    //     } catch (err) {
+    //         console.log(err.response.data);
+    //     }
+    // }
+
+async function openDream(dreamId) {
+    try {
+        navigate(`/dream/${dreamId}`)
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
     useEffect(() => {
         getDreams()
     }, []);
@@ -40,17 +61,19 @@ export default function Dreamlist() {
         <Screen>
             <Header />
             <Container>
-                {dreamList.length === 0 ? <div>You must be logged in to continue.</div> :
+                {dreamList.length === 0 ? <><p>You must be logged in to continue.</p> <p style={{"text-decoration":"underline", "cursor":"pointer"}} onClick={()=> navigate('/')}>Go to login page</p></> :
 
-                    dreamList.map((item, index) => (
+                    dreamList.map((d, index) => (
                         <DreamListItem
                             key={index}
-                            title={item.title}
-                            pictureUrl={item.pictureUrl}
-                            partialPoints={item.partialPoints}
-                            isDone={item.isDone}
-                            dateWhenDone={item.dateWhenDone}
-                            totalScore={item.totalScore}
+                            dreamId={d.id}
+                            title={d.title}
+                            pictureUrl={d.pictureUrl}
+                            partialPoints={d.partialPoints}
+                            isDone={d.isDone}
+                            dateWhenDone={d.dateWhenDone}
+                            totalScore={d.totalScore}
+                            openDream={openDream}
                         />
                     ))
                 }

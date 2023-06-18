@@ -1,11 +1,11 @@
 import { styled } from "styled-components"
 
-export default function TotalScore(){
+export default function TotalScore({partialPoints, totalScore}){
     return(
         <Container>
             <Score>
-                <div className="partial">15</div>
-                <div className="total">/100</div>
+                <div className="partial">{partialPoints}</div>
+                <div className="total">/{totalScore}</div>
             </Score>
         </Container>
     )
@@ -24,20 +24,22 @@ const Score = styled.div`
     justify-content: center;
     width:130px;
     height:130px;
-    padding: 10px;
+    padding: 15px;
     background-color: white;
-    border: 5px solid #a2c1ba;
+    border: 5px solid #DFB3B8;
     border-radius: 50%;
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
     font-weight: 400;
     
-
     .partial{
-        font-size:20px;
-    }
+        width:130px;
+        font-size: 100%;    }
 
     .total{
-        font-size:40px;
-    }
+        width:130px;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 150%;    }
+
 `

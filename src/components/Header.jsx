@@ -9,19 +9,24 @@ export default function Header() {
     const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
     const { token, setToken } = useContext(AuthContext);
     const navigate = useNavigate()
-    
+
     async function logout() {
-        axios
-        .post(`${URLPOST}auth/logout`, {token: token})
-        .then((res) => {     
-          setToken("");
-          navigate("/");
-        })
-        .catch((err) => {
-          alert(err);
-          console.log(err.response)
-        });
-    
+        {
+            !token ? navigate("/") :
+            axios
+                .post(`${URLPOST}auth/logout`, { token: token })
+                .then((res) => {
+                    setToken("");
+                    navigate("/");
+                })
+                .catch((err) => {
+                    console.log(err.response);
+                    navigate("/")
+                });
+
+
+        }
+
     }
 
     return (
