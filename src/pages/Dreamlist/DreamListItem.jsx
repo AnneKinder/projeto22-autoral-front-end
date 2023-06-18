@@ -1,25 +1,27 @@
 import { styled } from "styled-components";
 import Add from "../../components/Add";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function DreamListItem({ title, pictureUrl, partialPoints, isDone, dateWhenDone, totalScore }) {
+export default function DreamListItem({ dreamId, openDream, title, pictureUrl, partialPoints, isDone, dateWhenDone, totalScore }) {
+console.log(dreamId)
+return (
+    <Container onClick={()=> openDream(dreamId)} >
+        <Add />
+        <Left>
+            <Title>{title}</Title>
+        </Left>
 
-    return (
-        <Container>
-            <Add />
-            <Left>
-                <Title>{title}</Title>
-            </Left>
+        <Right>
+            <img src={pictureUrl} alt={title} />
+            <Score>{partialPoints}/{totalScore}</Score>
+        </Right>
 
-            <Right>
-                <img src={pictureUrl} alt={title} />
-                <Score>{partialPoints}/{totalScore}</Score>
-            </Right>
-
-        </Container>
+    </Container>
 
 
 
-    )
+)
 }
 const Container = styled.div`
     background-color:#dfb3b8;

@@ -19,7 +19,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/home" element={<Home />} />
           <Route path="/dreamlist" element={<Dreamlist />} />
-          <Route path="/dream" element={<Dream />} />
+          <Route path="/dream/:id" element={<Dream />} />
           <Route path="/newdream" element={<NewDream />} />
         </Routes>
       </BrowserRouter>

@@ -2,30 +2,66 @@ import { styled } from "styled-components"
 import Header from "../../components/Header";
 import TotalScore from "./TotalScore";
 import Tasklist from "./Tasklist";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { AuthContext } from "../../contexts/auth";
 
 export default function Dream() {
+    const { id } = useParams();
+    const { token } = useContext(AuthContext);
+    const URLGET = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const [dreamInfo, setDreamInfo] = useState({})
+
+    async function getDreamFromApi() {
+        try {
+            await axios
+                .get(`${URLGET}dreams/dreamlist/${id}`, config)
+                .then((res) => {
+                    setDreamInfo(res.data)
+                })
+        } catch (err) {
+            console.log(err.response.data);
+        }
+    }
+
+    console.log(dreamInfo)
+
+    useEffect(() => {
+        getDreamFromApi()
+    }, []);
+
     return (
+
         <Screen>
             <Header />
             <Container>
-                <Container>
 
-                    <Title>
-                        Make it to 8km
-                    </Title>
+                {dreamInfo.length === 0 ? <div>loading</div> :
 
-                    <TotalScore />
+                    <Container>
 
-                    <Tasklist />
+                        <Title>
+                            {dreamInfo.title}
+                        </Title>
 
-                    <Image>
-                        <img src="./src/assets/images/run.jpg" alt="" />
-                    </Image>
+                        <TotalScore partialPoints={dreamInfo.partialPoints} totalScore={dreamInfo.totalScore} />
+                        
+                        <Tasklist />
 
-                </Container>
+                        <Image>
+                            <img src={dreamInfo.pictureUrl} alt={dreamInfo.title} />
+                        </Image>
+
+                    </Container>
+                }
             </Container>
-
-
         </Screen>
 
     )
