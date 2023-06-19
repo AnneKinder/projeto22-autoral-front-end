@@ -4,6 +4,8 @@ import { BsDoorOpenFill } from 'react-icons/bs';
 import { useContext } from "react";
 import { AuthContext } from "../contexts/auth";
 import axios from "axios";
+import { BsPlusSquareFill } from 'react-icons/bs';
+import Add from "./Add";
 
 export default function Header() {
     const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
@@ -33,7 +35,9 @@ export default function Header() {
         <Container>
             <Box><h1>when</h1></Box>
             <Box onClick={() => navigate("/dreamlist")}><h2>dreamlist</h2></Box>
+            <Box><BsPlusSquareFill style={{ "cursor": "pointer" }} onClick={() => navigate("/newdream")}/></Box>
             <Box><BsDoorOpenFill style={{ "cursor": "pointer" }} onClick={() => logout()} /></Box>
+
         </Container>
     )
 }
