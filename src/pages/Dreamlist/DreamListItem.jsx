@@ -4,10 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function DreamListItem({ dreamId, openDream, title, pictureUrl, partialPoints, isDone, dateWhenDone, totalScore }) {
-console.log(dreamId)
-return (
+
+    return (
     <Container onClick={()=> openDream(dreamId)} >
-        <Add />
         <Left>
             <Title>{title}</Title>
         </Left>
