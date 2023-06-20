@@ -49,7 +49,7 @@ export default function Dreamlist() {
         <Screen>
             <Header />
             <Container>
-                {dreamList.length === 0 ? <><p>You must be logged in to continue.</p> <p style={{ "text-decoration": "underline", "cursor": "pointer" }} onClick={() => navigate('/')}>Go to login page</p></> :
+                {dreamList.length === 0 ? <><p>nothing to see here</p> <p style={{ "text-decoration": "underline", "cursor": "pointer" }} onClick={() => navigate('/')}>Go to login page</p></> :
 
                     dreamList.map((d, index) => (
                         <DreamListItem
