@@ -19,25 +19,28 @@ export default function Dream() {
 
     const [dreamInfo, setDreamInfo] = useState({})
     const [tasklistInfo, setTasklistInfo] = useState({})
+    const [taskStatus, setTaskStatus] = useState({})
 
-    async function getDreamAndTasklistFromApi() {
+
+    async function getDreamAndTasklistAndStatusFromApi() {
         try {
             await axios
                 .get(`${URLGET}dreams/dreamlist/${id}`, config)
                 .then((res) => {
-                    setDreamInfo(res.data.dream)
-                    setTasklistInfo(res.data.tasklist)
+                    setTimeout((setDreamInfo(res.data.dream)), 1500)
+                    setTimeout((setTasklistInfo(res.data.tasklist)), 1500)
+                    setTimeout((setTaskStatus(res.data.statusOfTask)), 1500)
                 })
         } catch (err) {
             console.log(err.response.data);
         }
     }
 
-    console.log(dreamInfo)
-
     useEffect(() => {
-        getDreamAndTasklistFromApi()
+        getDreamAndTasklistAndStatusFromApi()
     }, []);
+
+    setTimeout(console.log(dreamInfo, tasklistInfo, taskStatus), 5000)
 
     return (
 

@@ -1,7 +1,10 @@
 import { styled } from "styled-components"
 import TaskItem from "./TaskItem"
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/auth";
+import axios from "axios";
 
-export default function Tasklist({ tasklistInfo, totalScore }) {
+export default function Tasklist({ tasklistInfo, totalScore}) {
 
     const { id, dreamId, t1, t2, t3, t4, t5 } = tasklistInfo
 
@@ -13,13 +16,14 @@ export default function Tasklist({ tasklistInfo, totalScore }) {
             tasklist.push(rawTasklist[i])
         }
     }
-
     const pointsByTask = (totalScore / tasklist.length)
+
+
 
     return (
         <Container>
             {tasklist.map((t, index) => (
-                <TaskItem key={index} task={t} pointsByTask={pointsByTask} />
+                <TaskItem key={index} taskNumber={`t${index +1}`} task={t} tasklistId={id} pointsByTask={pointsByTask}/>
             ))}
         </Container>
     )
