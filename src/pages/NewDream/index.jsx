@@ -11,7 +11,9 @@ export default function NewDream() {
     const navigate = useNavigate();
     const { token } = useContext(AuthContext);
     const [dream, setDream] = useState({ title: "", dateToBeDone: "", totalScore: "", pictureUrl: "" })
-    const [tasks, setTasks] = useState({ t1: "", t2: "", t3: "", t4: "", t5: "" })
+    const [dreamId, setDreamId] = useState({})
+    const [task, setTask] = useState({descrip: "", isDone: false})
+    const [firstTask, setFirstTask] = useState(false)
     const [isDisabled, setIsDisabled] = useState(false)
     const [mainFormComplete, setIsMainFormComplete] = useState(false)
 
@@ -23,16 +25,31 @@ export default function NewDream() {
 
     function handleMainForm(e) {
         e.preventDefault();
-        setIsDisabled(true)
-        setIsMainFormComplete(true)
-    }
-    function handleTaskForm(e) {
-        e.preventDefault();
 
-        axios.post(`${URLPOST}dreams`, { dream, tasks }, config)
+        axios.post(`${URLPOST}dreams`, {dream}, config)
+        .then((res) => {
+            setDreamId(res.data.dreamId)
+            setIsMainFormComplete(true)
+        })
+        .catch((err) => {
+            console.log(err)
+            setIsDisabled(false)
+        });
+    }
+
+    function handleTaskForm(el) {
+        el.preventDefault();
+
+        console.log(task)
+        console.log(dreamId)
+
+        axios.post(`${URLPOST}dreams/tasks`, { task, dreamId }, config)
             .then((res) => {
-                navigate("/dreamlist");
+                console.log("task created")
+                setTask({ ...task, descrip: "" })
                 setIsDisabled(false)
+                setFirstTask(true)
+
             })
             .catch((err) => {
                 alert(err);
@@ -111,65 +128,18 @@ export default function NewDream() {
                         <form onSubmit={handleTaskForm}>
                             <Title>tasks to get there:</Title>
                             <input
-                                name="t1"
+                                name="task"
                                 type="text"
                                 placeholder="..."
                                 required
                                 onChange={(t) =>
-                                    setTasks({ ...tasks, t1: t.target.value })
+                                    setTask({ ...task, descrip: t.target.value })
                                 }
-                                value={tasks.t1}
+                                value={task.descrip}
                                 data-test="task"
                             />
-
-                            <input
-                                name="t2"
-                                type="text"
-                                placeholder="..."
-                                onChange={(t) =>
-                                    setTasks({ ...tasks, t2: t.target.value })
-                                }
-                                value={tasks.t2}
-                                data-test="task"
-                            />
-
-
-                            <input
-                                name="t3"
-                                type="text"
-                                placeholder="..."
-                                onChange={(t) =>
-                                    setTasks({ ...tasks, t3: t.target.value })
-                                }
-                                value={tasks.t3}
-                                data-test="task"
-                            />
-
-
-                            <input
-                                name="t4"
-                                type="text"
-                                placeholder="..."
-                                onChange={(t) =>
-                                    setTasks({ ...tasks, t4: t.target.value })
-                                }
-                                value={tasks.t4}
-                                data-test="task"
-                            />
-
-                            <input
-                                name="t5"
-                                type="text"
-                                placeholder="..."
-                                onChange={(t) =>
-                                    setTasks({ ...tasks, t5: t.target.value })
-                                }
-                                value={tasks.t5}
-                                data-test="task"
-                            />
-
-
-                            <button type="submit" data-test="create-task-btn" >start dreamin'</button>
+                            <button type="submit" data-test="create-task-btn" >add task</button>
+                            {firstTask ? <button onClick={() => navigate("/dreamlist")}>complete</button> : ""}
                         </form>
 
                     </Form>

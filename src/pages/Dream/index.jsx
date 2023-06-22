@@ -11,6 +11,7 @@ export default function Dream() {
     const { id } = useParams();
     const { token } = useContext(AuthContext);
     const URLGET = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
+    const URLPOST= `${import.meta.env.VITE_REACT_APP_API_URL}/`;
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -21,26 +22,36 @@ export default function Dream() {
     const [tasklistInfo, setTasklistInfo] = useState({})
     const [taskStatus, setTaskStatus] = useState({})
 
-
     async function getDreamAndTasklistAndStatusFromApi() {
         try {
             await axios
                 .get(`${URLGET}dreams/dreamlist/${id}`, config)
                 .then((res) => {
-                    setTimeout((setDreamInfo(res.data.dream)), 1500)
-                    setTimeout((setTasklistInfo(res.data.tasklist)), 1500)
-                    setTimeout((setTaskStatus(res.data.statusOfTask)), 1500)
+                    setDreamInfo(res.data.dream)
+                    setTasklistInfo(res.data.tasklist)
+                   setTaskStatus(res.data.statusOfTask)
                 })
         } catch (err) {
             console.log(err.response.data);
         }
     }
 
+    const [checkedTasks, setCheckedTasks] = useState([])
+
+   const {t1, t2, t3, t4, t5 } = tasklistInfo
+   let rawTasklist = [t1, t2, t3, t4, t5]
+    let tasklist = []
+    for (let i = 0; i < rawTasklist.length; i++) {
+        if (rawTasklist[i] != "") {
+            tasklist.push(rawTasklist[i])
+        }
+    }
+
+
+
     useEffect(() => {
         getDreamAndTasklistAndStatusFromApi()
-    }, []);
-
-    setTimeout(console.log(dreamInfo, tasklistInfo, taskStatus), 5000)
+        }, [checkedTasks]);
 
     return (
 
@@ -58,8 +69,9 @@ export default function Dream() {
 
                         <TotalScore partialPoints={dreamInfo.partialPoints} totalScore={dreamInfo.totalScore} />
 
-                        <Tasklist tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} />
-                        <DateToBeDone>linha de chegada: {dreamInfo.dateToBeDone}</DateToBeDone>
+                    <Tasklist  tasklist={tasklist} totalScore={dreamInfo.totalScore} taskStatusId={taskStatus.id} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks}/>
+
+                        <DateToBeDone>due: {dreamInfo.dateToBeDone}</DateToBeDone>
                         <Image>
                             <img src={dreamInfo.pictureUrl} alt={dreamInfo.title} />
                         </Image>
