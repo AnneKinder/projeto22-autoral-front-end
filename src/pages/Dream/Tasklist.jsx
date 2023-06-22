@@ -1,17 +1,16 @@
 import { styled } from "styled-components"
 import TaskItem from "./TaskItem"
 
-export default function Tasklist({  tasklist, totalScore, checkedTasks, setCheckedTasks}) {
+export default function Tasklist({  tasklistInfo, totalScore, checkedTasks, setCheckedTasks}) {
    
-    const pointsByTask = (totalScore / tasklist.length)
+    const pointsByTask = (totalScore/tasklistInfo.length)
     
 
     return (
         <Container>
-            {tasklist.map((t, index) => (
-                <TaskItem key={index} taskStatusId={taskStatusId} taskNumber={`t${index +1}`} task={t}  pointsByTask={pointsByTask} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} />
+            {tasklistInfo.map((t, index) => (
+                <TaskItem key={index} taskId={t.id} dreamId={t.dreamId} task={t.descrip} status={t.isDone} pointsByTask={pointsByTask} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} />
             ))}
-            <button onClick={sendAdvanceToApi}>update</button>
         </Container>
     )
 }

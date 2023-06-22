@@ -5,17 +5,17 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/auth";
 
 
-export default function TaskItem({ taskNumber, task, pointsByTask, checkedTasks, setCheckedTasks }) {
+export default function TaskItem({ taskId, dreamId, task, status, pointsByTask, checkedTasks, setCheckedTasks }) {
     const { token } = useContext(AuthContext);
 
-    function closeTask(taskNumber) {
-        const newArray = [...checkedTasks, taskNumber]
-        setCheckedTasks(newArray)
+    function checkTask(taskId) {
+        // const newArray = [...checkedTasks, taskNumber]
+        // setCheckedTasks(newArray)
     }
 
     return (
         <TaskItemSty>
-            <div className="checkbox" onClick={() => closeTask(taskNumber)}>{checkedTasks.includes(taskNumber) ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</div>
+            <div className="checkbox" onClick={() => closeTask(taskId)}>{status ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</div>
             <div className="task">{task}</div>
             <div className="score">{parseInt(pointsByTask)}</div>
         </TaskItemSty>
