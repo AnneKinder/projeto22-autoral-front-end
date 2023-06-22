@@ -1,30 +1,17 @@
 import { styled } from "styled-components"
 import TaskItem from "./TaskItem"
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../contexts/auth";
-import axios from "axios";
 
-export default function Tasklist({ tasklistInfo, totalScore}) {
-
-    const { id, dreamId, t1, t2, t3, t4, t5 } = tasklistInfo
-
-    let rawTasklist = [t1, t2, t3, t4, t5]
-    let tasklist = []
-
-    for (let i = 0; i < rawTasklist.length; i++) {
-        if (rawTasklist[i] != "") {
-            tasklist.push(rawTasklist[i])
-        }
-    }
+export default function Tasklist({  tasklist, totalScore, checkedTasks, setCheckedTasks}) {
+   
     const pointsByTask = (totalScore / tasklist.length)
-
-
+    
 
     return (
         <Container>
             {tasklist.map((t, index) => (
-                <TaskItem key={index} taskNumber={`t${index +1}`} task={t} tasklistId={id} pointsByTask={pointsByTask}/>
+                <TaskItem key={index} taskStatusId={taskStatusId} taskNumber={`t${index +1}`} task={t}  pointsByTask={pointsByTask} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} />
             ))}
+            <button onClick={sendAdvanceToApi}>update</button>
         </Container>
     )
 }

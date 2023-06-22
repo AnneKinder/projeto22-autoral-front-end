@@ -1,43 +1,21 @@
 import { styled } from "styled-components"
 import { ImCheckboxUnchecked } from 'react-icons/im';
 import { ImCheckboxChecked } from 'react-icons/im';
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/auth";
-import axios from "axios";
 
 
-
-export default function TaskItem({ taskNumber, task, pointsByTask }) {
+export default function TaskItem({ taskNumber, task, pointsByTask, checkedTasks, setCheckedTasks }) {
     const { token } = useContext(AuthContext);
-    const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    };
 
- const [checked, setChecked] = useState(false)
-
-//  function checkTaskApi (){
-//     axios.post(`${URLPOST}dreams/status/${taskStatusId}`, taskNumber, config)
-//     .then((res) => {
-//         console.log("Checked")
-//     })
-//     .catch((err) => {
-//         alert(err);
-//         console.log(err)
-//     });
-//  }
-
-    function closeTask(){
-        setChecked(true)
-       // checkTaskApi()
-        console.log(taskNumber)
+    function closeTask(taskNumber) {
+        const newArray = [...checkedTasks, taskNumber]
+        setCheckedTasks(newArray)
     }
 
     return (
         <TaskItemSty>
-            <div className="checkbox" onClick={closeTask}>{checked ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</div>
+            <div className="checkbox" onClick={() => closeTask(taskNumber)}>{checkedTasks.includes(taskNumber) ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</div>
             <div className="task">{task}</div>
             <div className="score">{parseInt(pointsByTask)}</div>
         </TaskItemSty>
