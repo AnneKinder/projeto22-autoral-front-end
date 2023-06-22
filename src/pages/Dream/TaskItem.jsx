@@ -1,29 +1,54 @@
 import { styled } from "styled-components"
 import { ImCheckboxUnchecked } from 'react-icons/im';
 import { ImCheckboxChecked } from 'react-icons/im';
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth";
+import axios from "axios";
 
 
 export default function TaskItem({ taskId, dreamId, task, status, pointsByTask, checkedTasks, setCheckedTasks }) {
     const { token } = useContext(AuthContext);
+    const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
-    function checkTask(taskId) {
-        // const newArray = [...checkedTasks, taskNumber]
-        // setCheckedTasks(newArray)
+    async function checkTask(taskId) {
+        try {
+            await axios
+                .post(`${URLPOST}dreams/status/${taskId}`, "", config)
+                .then((res) => {
+                    setCheckedTasks([...checkedTasks, taskId])
+                })
+        } catch (err) {
+            console.log(err.response.data);
+        }
     }
 
     return (
-        <TaskItemSty>
-            <div className="checkbox" onClick={() => closeTask(taskId)}>{status ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</div>
+        <TaskItemSty >
+            <div className="checkbox" onClick={() => checkTask(taskId)}>{status ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}</div>
             <div className="task">{task}</div>
-            <div className="score">{parseInt(pointsByTask)}</div>
+            <Score colorprop={status ? "#a2c1ba" : ""}>{parseInt(pointsByTask)}</Score>
         </TaskItemSty>
 
     )
 }
 
+const Score = styled.div`
+        position: absolute;
+        right: 8px;
+        font-size: 20px;
+        border: 2px white solid;
+        padding:5px;
+        border-radius: 50%;
+        cursor:pointer;
+        color:white;
+        background-color: ${(props) => props.colorprop}; ;
 
+`
 const TaskItemSty = styled.div`
     box-sizing: border-box;
     display: flex;
@@ -56,14 +81,6 @@ const TaskItemSty = styled.div`
     }
 
     .score{
-        position: absolute;
-        right: 8px;
-        font-size: 20px;
-        border: 2px white solid;
-        padding:5px;
-        border-radius: 50%;
-      //  background-color: #DFB3B8;
-        cursor:pointer;
-        color:white;
+
     }
     `

@@ -35,15 +35,6 @@ export default function Dream() {
 
     const [checkedTasks, setCheckedTasks] = useState([])
 
-//    const {t1, t2, t3, t4, t5 } = tasklistInfo
-//    let rawTasklist = [t1, t2, t3, t4, t5]
-//     let tasklist = []
-//     for (let i = 0; i < rawTasklist.length; i++) {
-//         if (rawTasklist[i] != "") {
-//             tasklist.push(rawTasklist[i])
-//         }
-//     }
-
 
     useEffect(() => {
         getDreamAndTasklistAndStatusFromApi()
