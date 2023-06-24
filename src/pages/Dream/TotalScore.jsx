@@ -1,11 +1,15 @@
 import { styled } from "styled-components"
 
-export default function TotalScore({ currentScore, totalScore }) {
+export default function TotalScore({ currentScore, totalScore, isDone }) {
     return (
         <Container>
             <Score>
-                <div className="partial">{currentScore}</div>
-                <div className="total">/{totalScore}</div>
+                {isDone ? <Completed>Yay!</Completed> :
+                    <>
+                        <div className="partial">{currentScore}</div>
+                        <div className="total">/{totalScore}</div>
+                    </>}
+
             </Score>
         </Container>
     )
@@ -17,6 +21,13 @@ const Container = styled.div`
     position: absolute;
     top:15%;
     right: 10%;
+    font-family: 'Galdeano', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+`
+const Completed = styled.div`
+    font-size:40px;
+    color: #a2c1ba;
 `
 const Score = styled.div`
     display: flex;
@@ -28,9 +39,7 @@ const Score = styled.div`
     background-color: white;
     border: 5px solid #DFB3B8;
     border-radius: 50%;
-    font-family: 'Galdeano', sans-serif;
-    font-style: normal;
-    font-weight: 400;
+   
     
     .partial{
         width:130px;
