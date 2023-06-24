@@ -19,6 +19,7 @@ export default function Dream() {
 
     const [dreamInfo, setDreamInfo] = useState({})
     const [tasklistInfo, setTasklistInfo] = useState([])
+    const [currentScore, setCurrentScore] = useState(0)
 
     async function getDreamAndTasklistAndStatusFromApi() {
         try {
@@ -27,6 +28,7 @@ export default function Dream() {
                 .then((res) => {
                     setDreamInfo(res.data.dream)
                     setTasklistInfo(res.data.tasklist)
+                    setCurrentScore(res.data.dream.partialPoints)
                 })
         } catch (err) {
             console.log(err.response.data);
@@ -39,7 +41,6 @@ export default function Dream() {
     useEffect(() => {
         getDreamAndTasklistAndStatusFromApi()
         }, [checkedTasks]);
-
     return (
 
         <Screen>
@@ -54,9 +55,9 @@ export default function Dream() {
                             {dreamInfo.title}
                         </Title>
 
-                        <TotalScore partialPoints={dreamInfo.partialPoints} totalScore={dreamInfo.totalScore} />
+                        <TotalScore currentScore={currentScore} totalScore={dreamInfo.totalScore} />
 
-                    <Tasklist  tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks}/>
+                    <Tasklist setCurrentScore={setCurrentScore} currentScore={currentScore} tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks}/>
 
                         <DateToBeDone>due: {dreamInfo.dateToBeDone}</DateToBeDone>
                         <Image>
