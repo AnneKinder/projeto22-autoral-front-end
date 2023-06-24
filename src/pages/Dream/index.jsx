@@ -11,6 +11,8 @@ export default function Dream() {
     const { id } = useParams();
     const { token } = useContext(AuthContext);
     const URLGET = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
+    const URLPOST= `${import.meta.env.VITE_REACT_APP_API_URL}/`;
+
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -20,6 +22,8 @@ export default function Dream() {
     const [dreamInfo, setDreamInfo] = useState({})
     const [tasklistInfo, setTasklistInfo] = useState([])
     const [currentScore, setCurrentScore] = useState(0)
+    const [doneTasks, setDoneTasks] = useState([])
+
 
     async function getDreamAndTasklistAndStatusFromApi() {
         try {
@@ -29,6 +33,7 @@ export default function Dream() {
                     setDreamInfo(res.data.dream)
                     setTasklistInfo(res.data.tasklist)
                     setCurrentScore(res.data.dream.partialPoints)
+                    setDoneTasks(res.data.doneTasks)
                 })
         } catch (err) {
             console.log(err.response.data);
@@ -38,9 +43,28 @@ export default function Dream() {
     const [checkedTasks, setCheckedTasks] = useState([])
 
 
+    if(tasklistInfo.length>0){
+        if (doneTasks.length === tasklistInfo.length) {
+            completedDreamToApi()
+        }
+    }
+
+    async function completedDreamToApi(){
+        try {
+            await axios
+                .post(`${URLPOST}dreams/complete`, {dreamId: dreamInfo.id}, config)
+                .then((res) => {
+                    console.log(`Dream "${res.data.dreamId}" is finished!`)
+                })
+        } catch (err) {
+            console.log(err.response.data);
+        }
+    }
+
+
     useEffect(() => {
         getDreamAndTasklistAndStatusFromApi()
-        }, [checkedTasks]);
+    }, [checkedTasks]);
     return (
 
         <Screen>
@@ -57,7 +81,7 @@ export default function Dream() {
 
                         <TotalScore currentScore={currentScore} totalScore={dreamInfo.totalScore} />
 
-                    <Tasklist setCurrentScore={setCurrentScore} currentScore={currentScore} tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks}/>
+                        <Tasklist setCurrentScore={setCurrentScore} currentScore={currentScore} tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} />
 
                         <DateToBeDone>due: {dreamInfo.dateToBeDone}</DateToBeDone>
                         <Image>
