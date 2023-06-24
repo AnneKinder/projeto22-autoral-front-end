@@ -79,11 +79,11 @@ export default function Dream() {
                             {dreamInfo.title}
                         </Title>
 
-                        <TotalScore currentScore={currentScore} totalScore={dreamInfo.totalScore} />
+                        <TotalScore isDone={dreamInfo.isDone} currentScore={currentScore} totalScore={dreamInfo.totalScore} />
 
                         <Tasklist setCurrentScore={setCurrentScore} currentScore={currentScore} tasklistInfo={tasklistInfo} totalScore={dreamInfo.totalScore} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} />
 
-                        <DateToBeDone>due: {dreamInfo.dateToBeDone}</DateToBeDone>
+                        <DateToBeDone>until: {dreamInfo.dateToBeDone}</DateToBeDone>
                         <Image>
                             <img src={dreamInfo.pictureUrl} alt={dreamInfo.title} />
                         </Image>
@@ -128,7 +128,7 @@ const DateToBeDone = styled.div`
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
+    font-size: 30px;
     color: #ffffff;
     text-align: center;
     text-shadow: 0 3px 30px rgba(0,0,0,1);

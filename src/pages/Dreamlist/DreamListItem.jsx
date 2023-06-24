@@ -13,7 +13,9 @@ export default function DreamListItem({ dreamId, openDream, title, pictureUrl, p
 
         <Right>
             <img src={pictureUrl} alt={title} />
-            <Score>{partialPoints}/{totalScore}</Score>
+            <Score>
+               {isDone? <Completed>COMPLETED</Completed> : <div>{partialPoints}/{totalScore}</div>}
+            </Score>
         </Right>
 
     </Container>
@@ -82,5 +84,10 @@ const Score = styled.div`
                           1px 1px 0 #8F7B7E,
                          1px -2px 0 #8F7B7E,
                         -1px -1px 0 #8F7B7E;
+`
 
+const Completed = styled.div`
+ font-family: 'Barriecito', cursive;
+    font-size: 40px;
+    color: #a2c1ba;
 `
