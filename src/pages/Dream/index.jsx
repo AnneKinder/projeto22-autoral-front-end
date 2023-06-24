@@ -110,6 +110,7 @@ const Container = styled.div`
     align-items: center;
     margin:50px;
     flex-wrap: wrap;
+ 
 `
 
 const Title = styled.div`

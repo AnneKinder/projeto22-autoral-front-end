@@ -7,7 +7,7 @@ import { AuthContext } from "../../contexts/auth";
 export default function SignIn() {
   const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
   const navigate = useNavigate();
-  const { setUser, setToken } = useContext(AuthContext);
+  const { setUser, setToken, setName, setLastName } = useContext(AuthContext);
   const [loginUser, setLoginUser] = useState({ email: "", password: "" });
   const [isDisabled, setIsDisabled] = useState(false)
 
@@ -21,6 +21,7 @@ export default function SignIn() {
     .then((res) => {     
       setUser(res.data.user);
       setToken(res.data.token)
+      console.log(res.data)
       navigate("/home");
       setIsDisabled(false)
     })
