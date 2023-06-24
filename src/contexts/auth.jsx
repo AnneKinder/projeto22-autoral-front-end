@@ -4,8 +4,6 @@ export const AuthContext = React.createContext({});
 
 export const AuthProvider = (props) => {
   const [user, setUser] = useState({})
-  const [name, setName] = useState({});
-  const [lastName, setLastName] = useState({});
   const [token, setToken] = useState({});
 
   return (
@@ -14,11 +12,7 @@ export const AuthProvider = (props) => {
         user,
         setUser,
         token,
-        setToken,
-        name,
-        setName,
-        lastName,
-        setLastName
+        setToken
       }}>
       {props.children}
 

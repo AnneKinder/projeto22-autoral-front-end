@@ -1,28 +1,25 @@
 import { styled } from "styled-components";
-import Add from "../../components/Add";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export default function DreamListItem({ dreamId, openDream, title, pictureUrl, partialPoints, isDone, dateWhenDone, totalScore }) {
 
     return (
-    <Container onClick={()=> openDream(dreamId)} >
-        <Left>
-            <Title>{title}</Title>
-        </Left>
+        <Container onClick={() => openDream(dreamId)} colorprop={isDone ? '0 30px 80px rgba(106, 187, 149, 0.719)' : '0 30px 40px rgba(0,0,0,.1)'}>
+            <Left>
+                <Title>{title}</Title>
+            </Left>
 
-        <Right>
-            <img src={pictureUrl} alt={title} />
-            <Score>
-               {isDone? <Completed>COMPLETED</Completed> : <div>{partialPoints}/{totalScore}</div>}
-            </Score>
-        </Right>
+            <Right>
+                <img src={pictureUrl} alt={title} />
+                <Score>
+                    {isDone ? <Completed>COMPLETED</Completed> : <div>{partialPoints}/{totalScore}</div>}
+                </Score>
+            </Right>
 
-    </Container>
+        </Container>
 
 
 
-)
+    )
 }
 const Container = styled.div`
     background-color:#dfb3b8;
@@ -31,11 +28,10 @@ const Container = styled.div`
     justify-content: space-between;
     margin: 50px 10px;
     padding:30px 55px 30px 55px;
-    text-shadow: 0 10px 45px rgba(0,0,0,0.4);
-    box-shadow: 0 30px 40px rgba(0,0,0,.1);
+    text-shadow: 0 10px 45px rgba(0,0,0,0.4); 
+    box-shadow: ${(props) => props.colorprop};
     border-radius: 20px;
     cursor: pointer;
-
 `
 
 const Right = styled.div`
@@ -48,8 +44,6 @@ const Right = styled.div`
         box-shadow: 0 30px 40px rgba(0,0,0,.1);
         border-radius: 20px;
         object-fit: cover;
-        
-
     }
 `
 const Left = styled.div`
@@ -80,8 +74,8 @@ const Score = styled.div`
     font-weight: 700;
     font-size: 36px;
     color: #ffffff;
-    text-shadow: -1px 1px 0 #8F7B7E,
-                          1px 1px 0 #8F7B7E,
+    text-shadow: -1px 1px 0 #030001,
+                          1px 1px 0 #080808,
                          1px -2px 0 #8F7B7E,
                         -1px -1px 0 #8F7B7E;
 `
