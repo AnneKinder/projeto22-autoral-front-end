@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/auth";
 import axios from "axios";
 
 
-export default function TaskItem({ taskId, dreamId, task, status, pointsByTask, checkedTasks, setCheckedTasks }) {
+export default function TaskItem({currentScore, setCurrentScore, taskId, dreamId, task, status, pointsByTask, checkedTasks, setCheckedTasks }) {
     const { token } = useContext(AuthContext);
     const URLPOST = `${import.meta.env.VITE_REACT_APP_API_URL}/`;
     const config = {
@@ -16,11 +16,13 @@ export default function TaskItem({ taskId, dreamId, task, status, pointsByTask, 
     };
 
     async function checkTask(taskId) {
+        const newScore = (currentScore+pointsByTask)
         try {
             await axios
-                .post(`${URLPOST}dreams/status/${taskId}`, "", config)
+                .post(`${URLPOST}dreams/status/${taskId}`, {dreamId, newScore}, config)
                 .then((res) => {
                     setCheckedTasks([...checkedTasks, taskId])
+                    setCurrentScore(currentScore+pointsByTask)
                 })
         } catch (err) {
             console.log(err.response.data);

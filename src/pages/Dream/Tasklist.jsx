@@ -1,7 +1,7 @@
 import { styled } from "styled-components"
 import TaskItem from "./TaskItem"
 
-export default function Tasklist({  tasklistInfo, totalScore, checkedTasks, setCheckedTasks}) {
+export default function Tasklist({ currentScore, setCurrentScore, tasklistInfo, totalScore, checkedTasks, setCheckedTasks}) {
    
     const pointsByTask = (totalScore/tasklistInfo.length)
     
@@ -9,7 +9,7 @@ export default function Tasklist({  tasklistInfo, totalScore, checkedTasks, setC
     return (
         <Container>
             {tasklistInfo.map((t, index) => (
-                <TaskItem key={index} taskId={t.id} dreamId={t.dreamId} task={t.descrip} status={t.isDone} pointsByTask={pointsByTask} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} />
+                <TaskItem key={index} taskId={t.id} dreamId={t.dreamId} task={t.descrip} status={t.isDone} pointsByTask={pointsByTask} checkedTasks={checkedTasks} setCheckedTasks={setCheckedTasks} currentScore={currentScore} setCurrentScore={setCurrentScore}/>
             ))}
         </Container>
     )
