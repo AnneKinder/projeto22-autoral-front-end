@@ -67,7 +67,7 @@ export default function Dream() {
     }, [checkedTasks]);
     return (
 
-        <Screen>
+        <>
             <Header />
             <Container>
 
@@ -91,17 +91,12 @@ export default function Dream() {
                     </Container>
                 }
             </Container>
-        </Screen>
+        </>
 
     )
 }
 
-const Screen = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width:100%;
-`
+
 
 const Container = styled.div`
     display: flex;
@@ -110,6 +105,14 @@ const Container = styled.div`
     align-items: center;
     margin:50px;
     flex-wrap: wrap;
+
+
+    @media (max-width: 860px) {
+    width: 100%;
+    margin:0px;
+    padding:12px;
+    }
+
  
 `
 
@@ -122,6 +125,12 @@ const Title = styled.div`
     color: #ffffff;
     text-align: center;
     text-shadow: 0 20px 40px rgba(0,0,0,0.6);
+
+    @media (max-width: 860px) {
+    font-size:40px;
+    }
+
+
 `
 
 const DateToBeDone = styled.div`
@@ -134,6 +143,11 @@ const DateToBeDone = styled.div`
     text-align: center;
     text-shadow: 0 3px 30px rgba(0,0,0,1);
     margin-bottom: 45px;
+
+    @media (max-width: 860px) {
+    width: 100%;
+    }
+
 `
 
 const Image = styled.div`
@@ -142,7 +156,15 @@ const Image = styled.div`
         width:630px;
         border-radius: 20px;
         box-shadow: 0 30px 40px rgba(0,0,0,.1);
-
     }
-    
+
+    @media (max-width: 860px) {
+    width: 100%;
+
+        img{
+        width: 100%;
+        object-fit: cover;
+        }
+    }
+
 `

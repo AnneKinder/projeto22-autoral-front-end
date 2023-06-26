@@ -118,10 +118,10 @@ const Container = styled.div`
 
   @media (max-width: 1000px) {
     flex-direction: column;
-    height:667px;
 
     div{
       text-align: center;
+      justify-content: center;
     }
   }
 `;
@@ -166,16 +166,13 @@ const SidebarSty = styled.div`
       }
 
       h1{
-        font-size: 76px;
-        line-height: 75px;
+        font-size: 70px;
+        line-height: 70px;
         width: 40%;
       }
 
       h2{
-        text-align: center;
-        font-size: 23px;
-        line-height: 30px;
-        width: 80%;
+        display: none;
       }
 
     }
@@ -232,7 +229,7 @@ const SignInSty = styled.div`
   p {
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 22px;
     line-height: 24px;
     text-decoration-line: underline;
@@ -242,6 +239,7 @@ const SignInSty = styled.div`
   @media (max-width: 860px) {
     width: 100%;
     height:75%;
+    margin-top: 10px;
 
     form {
     margin: 40px 0 0 0;

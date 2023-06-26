@@ -24,6 +24,8 @@ const Container = styled.div`
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
     font-weight: 400;
+
+    
 `
 const Completed = styled.div`
     font-size:40px;
@@ -39,18 +41,34 @@ const Score = styled.div`
     background-color: white;
     border: 5px solid #DFB3B8;
     border-radius: 50%;
+
+
+    @media (max-width: 860px) {
+        width: 20%;
+        height:20%;
+        border: 3px solid #DFB3B8;
+    }
    
     
     .partial{
         width:130px;
         font-size: 20px; 
         color:#a2c1ba;
+
+        @media (max-width: 860px) {
+            font-size: 10px;
+        }         
    }
 
     .total{
         width:130px;
         display: flex;
         flex-wrap: wrap;
-        font-size: 25px;    }
+        font-size: 25px;    
+    
+        @media (max-width: 860px) {
+            font-size: 22px;
+            }
+    }
 
 `
