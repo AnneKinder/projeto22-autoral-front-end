@@ -9,7 +9,7 @@ export default function Home() {
     const { user } = useContext(AuthContext);
 
     return (
-        <Screen>
+        <>
             <Header />
             <Container>
                 <Welcome>hello, {user.name}!</Welcome>
@@ -19,21 +19,25 @@ export default function Home() {
                     <h2>Proust, M</h2>
                 </Quote>
             </Container>
-        </Screen>
+            </>
     )
 }
 
-const Screen = styled.div`
-    display: flex;
-    flex-direction: column;
-`
+
 
 const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin:50px;
-    padding:30px;
+    padding:50px;
+    width: 100%;
+
+    @media (max-width: 860px){
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
 `
 const Welcome = styled.div`
     width: 400px;
@@ -41,12 +45,24 @@ const Welcome = styled.div`
    font-size:100px;
    color: white;
    text-shadow: 0 10px 60px rgba(0,0,0,0.1);
+
+   @media (max-width: 860px){
+        width: 100%;
+        font-size:70px;
+    }
 `
 const Image = styled.div`
     font-size: 200px;
     width: 300px;
     color: white;
     margin-top: 150px;
+    text-align: center;
+
+    @media (max-width: 860px){
+        width: 100%;
+        font-size: 150px;
+        margin-top: 50px;
+    }
 `
 const Quote = styled.div`
     width: 400px;
@@ -56,5 +72,9 @@ const Quote = styled.div`
     color: white;
     margin-top: 250px;
     text-shadow: 0 20px 40px rgba(0,0,0,0.1);
-
+    @media (max-width: 860px){
+        width: 100%;
+        font-size:40px;
+        margin-top: 50px;
+    }
 `

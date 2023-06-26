@@ -17,18 +17,18 @@ export default function SignIn() {
     setIsDisabled(true)
 
     axios
-    .post(`${URLPOST}auth/signin`, loginUser)
-    .then((res) => {     
-      setUser(res.data.user);
-      setToken(res.data.token)
-      console.log(res.data)
-      navigate("/home");
-      setIsDisabled(false)
-    })
-    .catch((err) => {
-      alert(err);
-      setIsDisabled(false)
-    });
+      .post(`${URLPOST}auth/signin`, loginUser)
+      .then((res) => {
+        setUser(res.data.user);
+        setToken(res.data.token)
+        console.log(res.data)
+        navigate("/home");
+        setIsDisabled(false)
+      })
+      .catch((err) => {
+        alert(err);
+        setIsDisabled(false)
+      });
 
   }
 
@@ -37,7 +37,7 @@ export default function SignIn() {
 
       <SidebarSty>
         <div>
-        <h2>not if,</h2>
+          <h2>not if,</h2>
           <h1>when</h1>
         </div>
       </SidebarSty>
@@ -82,12 +82,12 @@ const Container = styled.div`
   display: flex;
   width: 100vw;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 860px) {
     flex-direction: column;
-    height:667px;
 
     div{
       text-align: center;
+      justify-content: center;
     }
   }
 `;
@@ -121,7 +121,7 @@ const SidebarSty = styled.div`
     width: 442px;
   }
 
-    @media (max-width: 1000px) {
+    @media (max-width: 860px) {
       width: 100%;
       height: 25%;
 
@@ -134,16 +134,13 @@ const SidebarSty = styled.div`
       }
 
       h1{
-        font-size: 76px;
-        line-height: 75px;
+        font-size: 70px;
+        line-height: 70px;
         width: 40%;
       }
 
       h2{
-        text-align: center;
-        font-size: 23px;
-        line-height: 30px;
-        width: 80%;
+       display: none;
       }
 
     }
@@ -200,7 +197,7 @@ const SignInSty = styled.div`
   p {
     font-family: 'Galdeano', sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 22px;
     line-height: 24px;
     text-decoration-line: underline;
@@ -208,9 +205,10 @@ const SignInSty = styled.div`
   }
 
 
-  @media (max-width: 1000px) {
+  @media (max-width: 860px) {
     width: 100%;
     height:75%;
+    margin-top: 10px;
 
     form {
     margin: 40px 0 0 0;

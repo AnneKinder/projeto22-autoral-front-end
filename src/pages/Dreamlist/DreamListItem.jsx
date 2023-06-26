@@ -32,6 +32,11 @@ const Container = styled.div`
     box-shadow: ${(props) => props.colorprop};
     border-radius: 20px;
     cursor: pointer;
+
+    @media (max-width: 860px) {
+    width: 100%;
+    }
+
 `
 
 const Right = styled.div`
@@ -45,6 +50,17 @@ const Right = styled.div`
         border-radius: 20px;
         object-fit: cover;
     }
+
+
+    @media (max-width: 860px) {
+    width: 50%;
+    margin-left: 20px;
+        img{
+            width:150%;
+            height:100%;
+        }
+
+    }
 `
 const Left = styled.div`
     box-sizing: border-box;
@@ -52,6 +68,12 @@ const Left = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     border-radius: 20px;
+
+    @media (max-width: 860px) {
+    width: 50%;
+    margin-right: 20px;
+    }
+
 `
 
 const Title = styled.div`
@@ -61,6 +83,14 @@ const Title = styled.div`
     font-weight: 700;
     font-size: 60px;
     color: #ffffff;
+
+    @media (max-width: 860px) {
+    width: 100%;
+    font-size: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    }
+
 
 `
 const Score = styled.div`
@@ -78,10 +108,20 @@ const Score = styled.div`
                           1px 1px 0 #080808,
                          1px -2px 0 #8F7B7E,
                         -1px -1px 0 #8F7B7E;
+
+    @media (max-width: 860px) {
+        bottom: 4px;
+        right:4px;
+        font-size: 20px;
+    }
 `
 
 const Completed = styled.div`
  font-family: 'Barriecito', cursive;
     font-size: 40px;
     color: #a2c1ba;
+
+    @media (max-width: 860px) {
+        font-size: 20px;
+    }
 `

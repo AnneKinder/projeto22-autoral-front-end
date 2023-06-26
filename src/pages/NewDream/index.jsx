@@ -60,7 +60,7 @@ export default function NewDream() {
     }
 
     return (
-        <Screen>
+        <>
             <Header />
             <Container>
 
@@ -146,18 +146,15 @@ export default function NewDream() {
                 }
 
             </Container>
-        </Screen>
+        </>
     );
 }
-const Screen = styled.div`
-    display: flex;
-    flex-direction: column;
-`
+
 
 const Container = styled.div`
   display: flex;
   flex-direction:column;
-  width: 100vw;
+  width: 100%;
   height: 100vw;
   background-color: #a2c1ba;
 
@@ -176,20 +173,6 @@ const Title = styled.div`
 
 `;
 
-const Plus = styled.div`
-    display: flex;
-    align-items: center;
-    width: 200px;
-    font-family: 'Galdeano', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    color: #ffffff;
-    text-shadow: 0 1px 20px rgba(0,0,0,0.5);    
-
-
-`
-
 const Form = styled.div`
   display: flex;
   flex-direction: column;
@@ -201,8 +184,10 @@ const Form = styled.div`
   form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 80px 0 0 0;
     height: 400px;
+    width: 400px;
 
     h1{
     font-family: 'Galdeano', sans-serif;
@@ -211,6 +196,11 @@ const Form = styled.div`
     font-size:100px;
     color:white;
     text-shadow: 0 1px 20px rgba(0,0,0,0.4);    
+    }
+
+    @media (max-width: 860px) {
+      margin-top: 40px;
+      width: 80%;
     }
   }
 
@@ -229,6 +219,10 @@ const Form = styled.div`
     color: #9F9F9F;
     margin-bottom: 12px;
     padding:18px;
+
+    @media (max-width: 860px) {
+      width: 100%;
+    }
   }
 
   button {
@@ -246,6 +240,9 @@ const Form = styled.div`
     border-color: transparent;
     box-shadow: 0 10px 10px rgba(0,0,0,.1);
     cursor: pointer;
+    @media (max-width: 860px) {
+      width: 100%;
+    }
 
   }
 
